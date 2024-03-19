@@ -1,0 +1,124 @@
+<!-- views/partials/sidebar.hbs -->
+
+<style>
+  .sidebar {
+    flex: 3;
+    height: fit-content;
+    margin: 20px;
+    padding-bottom: 30px;
+    background-color: #fdfbfb;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .sidebarItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .sidebarTitle {
+    margin: 10px;
+    padding: 5px;
+    width: 80%;
+    border-top: solid 1px #a7a4a4;
+    border-bottom: solid 1px #a7a4a4;
+    text-align: center;
+    font-family: "Varela Round", sans-serif;
+    font-size: 12px;
+    line-height: 19px;
+    color: #222222;
+    font-weight: 600;
+  }
+  
+  .sidebarItem > img {
+    margin-top: 15px;
+    width: 250px;
+    height: 250px;
+  }
+  
+  .sidebarItem > p {
+    padding: 30px;
+  }
+  
+  .sidebarList {
+    list-style-type: none;
+    margin-bottom: 30px;
+  }
+  
+  .sidebarListItem {
+    display: inline-block;
+    width: 50%;
+    margin-top: 15px;
+    cursor: pointer;
+  }
+  
+  .sidebarSocial {
+    margin-top: 15px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sidebarIcon {
+    font-size: 16px;
+    margin-left: 10px;
+  }
+</style>
+
+<div class="sidebar">
+  <div class="sidebarItem">
+    <span class="sidebarTitle">ABOUT ME</span>
+    <img src="https://i.pinimg.com/474x/2b/29/24/2b2924a897dda64638ae1851f378cea7.jpg" alt="" />
+    <p>
+      Laboris sunt aute cupidatat velit magna velit ullamco dolore mollit amet ex esse.Sunt eu ut nostrud id quis proident.
+    </p>
+  </div>
+  <div class="sidebarItem">
+    <span class="sidebarTitle">CATEGORIES</span>
+    <ul class="sidebarList">
+      <li class="sidebarListItem">
+        <a class="link" class="item" href="/posts?cat=Life">
+          Life
+        </a>
+      </li>
+      <li class="sidebarListItem">
+        <a class="link" class="item"href="/posts?cat=Music">
+          Music
+        </a>
+      </li>
+      <li class="sidebarListItem">
+        <a class="link" class="item" href="/posts?cat=Sport">
+          Sport
+        </a>
+      </li>
+      <li class="sidebarListItem">
+        <a class="link" class="item" href="/posts?cat=Style">
+          Style
+        </a>
+      </li>
+      <li class="sidebarListItem">
+        <a class="link" class="item" href="/posts?cat=Tech">
+          Tech
+        </a>
+      </li>
+      <li class="sidebarListItem">
+        <a class="link" class="item" href="/posts?cat=Cinema">
+          Cinema
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="sidebarItem">
+    <span class="sidebarTitle">FOLLOW US</span>
+    <div class="sidebarSocial">
+      <i class="sidebarIcon fab fa-facebook-square"></i>
+      <i class="sidebarIcon fab fa-instagram-square"></i>
+      <i class="sidebarIcon fab fa-pinterest-square"></i>
+      <i class="sidebarIcon fab fa-twitter-square"></i>
+    </div>
+  </div>
+</div>

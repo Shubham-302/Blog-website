@@ -1,0 +1,239 @@
+<!-- views/settings.hbs -->
+
+<style>
+  request{
+    
+  }
+
+/* Style for Pending Blogs and Approved Blogs Sections */
+/* Style for Headings */
+h2 {
+  font-size: 24px;
+  color: lightcoral; 
+  margin-bottom: 10px;
+  margin-left:20px;
+}
+
+/* Style for Pending Blogs and Approved Blogs Sections */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Style for Each Blog Item */
+li {
+  margin-bottom: 10px;
+}
+
+/* Style for Approve and Reject Buttons */
+a[href^="/blog/approve-blog"],
+a[href^="/blog/reject-blog"],
+a[href^="/blog/delete-blog"] {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #4CAF50; /* Green for Approve */
+  color: #fff; /* White text */
+  text-decoration: none;
+  margin-right: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+a[href^="/blog/reject-blog"] {
+  background-color: #f44336; /* Red for Reject */
+}
+
+a[href^="/blog/delete-blog"] {
+  background-color: #ff9800; /* Orange for Delete */
+}
+
+/* Hover effect for Buttons */
+a[href^="/blog/approve-blog"]:hover {
+  background-color: #45a049; /* Darker green for Approve */
+}
+
+a[href^="/blog/reject-blog"]:hover {
+  background-color: #d32f2f; /* Darker red for Reject */
+}
+
+a[href^="/blog/delete-blog"]:hover {
+  background-color: #e65100; /* Darker orange for Delete */
+}
+
+/* Additional Styling if needed */
+
+  .settings {
+    display: flex;
+  }
+
+  .settingsWrapper {
+    flex: 9;
+    padding: 20px;
+  }
+
+  .settingsTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .settingsTitleUpdate {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: lightcoral;
+  }
+
+  .settingsTitleDelete {
+    color: red;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .settingsForm {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .settingsPP {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .settingsPP > img {
+    height: 70px;
+    width: 70px;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+
+  .settingsPPIcon {
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+    margin-left: 10px;
+    color: white;
+    background-color: lightcoral;
+    cursor: pointer;
+  }
+
+  .settingsPPButton:focus {
+    outline-style: none;
+  }
+
+  .settingsForm > label {
+    font-size: 20px;
+    margin-top: 20px;
+  }
+
+  .settingsPPInput {
+    width: 30%;
+  }
+
+  .settingsForm > input {
+    color: gray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .settingsSubmitButton {
+    align-self: center;
+    width: 150px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: teal;
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .settingsSubmitButton:hover {
+    background-color: rgb(1, 114, 114);
+  }
+</style>
+
+<!-- Include Socket.IO script -->
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+  // Connect to Socket.IO server
+  const socket = io();
+
+  // Listen for new blog notifications
+  socket.on('newBlogNotification', () => {
+    console.log('New blog added. Approve or reject in admin settings.')
+    alert('New blog added. Approve or reject in admin settings.');
+  });
+
+</script>
+
+<h2>Pending Blogs</h2>
+<ul>
+  {{#each blogsToApprove}}
+    <li class="request"> {{title}} - <a href="/blog/approve-blog/{{_id}}">Approve</a> <a href="/blog/reject-blog/{{_id}}">Reject</a></li>
+  {{/each}}
+</ul>
+
+<h2>Approved Blogs</h2>
+<ul>
+  {{#each approvedBlogs}}
+    <li>{{title}} - <a href="/blog/delete-blog/{{_id}}">Delete</a></li>
+  {{/each}}
+</ul>
+
+
+<div class="settings">
+  <div class="settingsWrapper">
+    <div class="settingsTitle">
+      <span class="settingsTitleUpdate">Update Password / Delete Account</span>
+    </div>
+    <form class="settingsForm" method="POST" action="/blog/settings/update">
+      <label>Profile Picture</label>
+      <div class="settingsPP">
+        <img
+          src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+          alt=""
+        />
+        <label for="fileInput">
+          <i class="settingsPPIcon far fa-user-circle"></i>
+        </label>
+        <input
+          id="fileInput"
+          type="file"
+          style="display: none;"
+          class="settingsPPInput"
+        />
+      </div>
+      <label>Username</label>
+      <input type="text" placeholder="Write your username ..." name="name" />
+      <label>Email</label>
+      <input type="email" placeholder="example@gmail.com" name="email" />
+      <label>Password</label>
+      <input type="password" placeholder="Write updated password" name="password" />
+      <button class="settingsSubmitButton" type="submit">
+        Update Password
+      </button>
+    </form>
+    <form class="settingsForm" method="POST" action="/blog/settings/delete">
+      <label>Delete Account</label>
+      <input type="password" placeholder="Write password to Delete account " name="passwordToDelete" />
+      <button class="settingsSubmitButton" type="submit">
+        Delete Account
+      </button>
+    </form>
+  </div>
+  {{> sidebar}}
+</div>

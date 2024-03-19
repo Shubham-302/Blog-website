@@ -1,0 +1,52 @@
+<!-- views/single-blog.hbs -->
+
+<style>
+  
+  .single-blog {
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .single-blog-img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 7px;
+  }
+
+  .single-blog-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+  .single-blog-content {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-top: 15px;
+  }
+  .single-blog-author {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #888;
+  }
+</style>
+
+<div class="single-blog">
+  {{#if singleBlog.imagePath}}
+    <img class="single-blog-img" src="{{singleBlog.imagePath}}" alt="{{singleBlog.title}}">
+  {{/if}}
+  {{#if singleBlog.title}}
+    <h3 class="single-blog-title">{{singleBlog.title}}</h3>
+  {{/if}}
+  {{#if singleBlog.content}}
+    <p class="single-blog-content">{{singleBlog.content}}</p>
+  {{/if}}
+   {{#if singleBlog.author}}
+    <p class="single-blog-author">Author: {{singleBlog.author.username}}</p>
+  {{/if}}
+</div>
+

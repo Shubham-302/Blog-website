@@ -1,0 +1,132 @@
+<!-- views/partials/header.hbs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Blog Title</title>
+    
+    <style>
+        .link{
+         text-decoration: none;
+         color: inherit;
+             }
+        .top {
+            width: 100%;
+            height: 50px;
+            background-color: white;
+            position: sticky;
+            top: 0;
+            display: flex;
+            align-items: center;
+            z-index: 999;
+            font-family: "Josefin Sans", sans-serif;
+        }
+
+        .topLeft,
+        .topRight {
+            flex: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .topIcon {
+            font-size: 20px;
+            margin-right: 10px;
+            color: #444;
+            cursor: pointer;
+        }
+
+        .topCenter {
+            flex: 6;
+        }
+
+        .topList {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .topListItem {
+            margin-right: 20px;
+            font-size: 18px;
+            font-weight: 300;
+            cursor: pointer;
+        
+        }
+
+        .topListItem:hover {
+            color: gray;
+        }
+
+        .topImg {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .topSearchIcon {
+            font-size: 18px;
+            color: #666;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top">
+        <div class="topLeft">
+            <i class="topIcon fab fa-facebook-square"></i>
+            <i class="topIcon fab fa-instagram-square"></i>
+            <i class="topIcon fab fa-pinterest-square"></i>
+            <i class="topIcon fab fa-twitter-square"></i>
+        </div>
+        <div class="topCenter">
+            <ul class="topList">
+                <li class="topListItem">
+                    <a class="link" href="/blog">Home</a>
+                </li>
+                <li class="topListItem">About</li>
+                <li class="topListItem">Contact</li>
+               
+            
+                {{#if user}}
+                         <li class="topListItem">
+                         <a class="link" href="/blog/myblog">Myblogs</a>
+                         </li>
+                        <li class="topListItem">
+                            <a class="link" href="/blog/add-blog">Write</a>
+                        </li>
+                    <li class="topListItem"><a class="link" href="/auth/logout">Logout</a></li>
+                {{/if}}
+            </ul>
+        </div>
+        <div class="topRight">
+            {{#if user}}
+            <a class="link" href="/blog/settings">
+            <img class="topImg" src=" https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="User Profile Image">
+        </a>
+            {{else}}
+            <ul class="topList">
+                <li class="topListItem">
+                    <a class="link" href="/auth/login">Login</a>
+                </li>
+                <li class="topListItem">
+                    <a class="link" href="/auth/register">Register</a>
+                </li>
+            </ul>
+            {{/if}}
+            <i class="topSearchIcon fas fa-search"></i>
+        </div>
+    </div>
+</body>
+
+</html>
